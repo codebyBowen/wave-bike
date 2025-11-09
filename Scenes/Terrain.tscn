@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://terrain_scene_001"]
+
+[ext_resource type="Script" path="res://Scripts/Terrain.gd" id="1"]
+
+[node name="Terrain" type="Node2D"]
+script = ExtResource("1")
+segment_length = 400
+segment_resolution = 20
+difficulty = 1.0
+generate_distance = 2000

@@ -1,0 +1,22 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+.import/
+*.import
+export.cfg
+export_presets.cfg
+
+# Mono/C# (if used)
+.mono/
+data_*/
+mono_crash.*.json
+
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
