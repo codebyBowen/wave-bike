@@ -1,8 +1,214 @@
-# 🏍️ Wave Rider - 赛博朋克摩托特技游戏
+[English](#english) | [中文](#中文)
+
+---
+
+<a name="english"></a>
+
+# Wave Rider - Cyberpunk Motocross Game
+
+A pixel-art cyberpunk motorcycle stunt game built with Godot 4.5.
+
+**[Switch to Chinese / 切换到中文](#中文)**
+
+## Gameplay
+
+- **Objective**: Ride across endless wave-like terrain, perform flips to earn high scores
+- **Controls**:
+  - `A` key - Lean backward (backflip)
+  - `D` key - Lean forward (frontflip)
+  - `ESC` key - Pause game
+  - `R` key - Restart (after game over)
+
+## Scoring System
+
+### Flip Points
+- 1 flip = 200 points
+- 2 flips = 500 points
+- 3 flips = 1500 points
+- 4 flips = 5000 points
+- 5+ flips = flips × 2000 points
+
+### Landing Quality Multiplier
+- **PERFECT** (0-5°): 3x multiplier
+- **GREAT** (5-15°): 2x multiplier
+- **GOOD** (15-30°): 1x multiplier
+- **>30°**: Crash
+
+### Combo System
+- Consecutive successful tricks increase combo count
+- Combo multipliers:
+  - 3-4 combo: 2x
+  - 5-6 combo: 3x
+  - 7-9 combo: 4x
+  - 10+ combo: 5x
+- Crashes break the combo
+
+### Airtime Bonus
+- Each second of airtime = +50 points
+
+## Project Structure
+
+```
+wave-bike/
+├── Scenes/
+│   ├── Main.tscn              # Main scene
+│   ├── Bike.tscn              # Motorcycle
+│   ├── Terrain.tscn           # Terrain generator
+│   └── UI/
+│       ├── GameHUD.tscn       # In-game HUD
+│       └── GameOver.tscn      # Game over screen
+
+├── Scripts/
+│   ├── Main.gd
+│   ├── Bike.gd                # Bike physics and controls
+│   ├── Terrain.gd             # Procedural terrain generation
+│   ├── ScoreSystem.gd         # Score calculation
+│   ├── GameHUD.gd
+│   └── GameOver.gd
+
+├── Autoload/                  # Global singletons
+│   ├── Global.gd              # Global variables and utilities
+│   ├── SignalBus.gd           # Signal hub
+│   └── GameManager.gd         # Game state management
+
+└── Assets/                    # Asset folders (to be added)
+    ├── Sprites/
+    ├── Audio/
+    └── Fonts/
+```
+
+## Getting Started
+
+### Option 1: Run in Godot Editor
+1. Open Godot 4.5
+2. Import project: Select the `project.godot` file
+3. Press `F5` or click "Run Project"
+
+### Option 2: Run from Command Line
+```bash
+godot --path /path/to/wave-bike
+```
+
+## Current Status
+
+### Completed
+- Motorcycle physics system
+- AD key controls and flip detection
+- Procedural terrain generation (5 terrain types)
+- Landing angle detection
+- Score and combo system
+- Game state management
+- Basic UI (HUD + game over screen)
+- Crash detection
+
+### Using Temporary Placeholders
+- Motorcycle: Cyan square + purple circular wheels
+- Terrain: Cyan neon lines
+- Background: Deep blue to purple gradient
+
+## Next Development Steps
+
+### Phase 2: Visual Upgrade (Pixel Art)
+- [ ] Pixel art motorcycle sprite
+- [ ] Pixel wheel animation (rotation)
+- [ ] Particle effects (dust, sparks, perfect landing glow)
+- [ ] Cyberpunk grid floor
+- [ ] Glow effects (Shader)
+
+### Phase 3: Audio System
+- [ ] Engine sound (pitch varies with speed)
+- [ ] Landing sound effects (perfect/normal/crash)
+- [ ] Flip whoosh sound
+- [ ] Background music (electronic style)
+- [ ] UI click sounds
+
+### Phase 4: Gameplay Expansion
+- [ ] Trick popup animations
+- [ ] More terrain types (loops, cliffs, springs)
+- [ ] Difficulty curve adjustment
+- [ ] Pause menu
+- [ ] Main menu
+- [ ] Achievement system
+
+## Debugging and Testing
+
+### View Console Output
+The game outputs detailed logs:
+- Takeoff and landing events
+- Flip angles and quality
+- Score calculation details
+- Terrain generation info
+
+### Adjust Parameters
+In the Godot editor you can adjust:
+- `Bike.tscn`: Acceleration, max speed, rotation torque
+- `Terrain.tscn`: Segment length, difficulty, generation distance
+- `Global.gd`: Angle detection ranges, score multipliers
+
+## Known Issues
+
+1. **Occasionally stuck in terrain**: May need to adjust collision shapes
+2. **Camera shake at high speed**: Can increase Camera2D smoothing speed
+3. **UI text may not center at certain resolutions**: Need to adjust anchors
+
+## Technical Details
+
+### Physics Parameters
+- Gravity scale: 1.0
+- Motorcycle mass: 50kg
+- Linear damping: 0.1
+- Angular damping: 0.5
+
+### Terrain Generation
+- Segment length: 400 pixels
+- Resolution: 20 points/segment
+- Pre-generation distance: 2000 pixels
+- Terrain types: Flat, sine wave, bumpy, ramp, hill
+
+### Flip Detection Algorithm
+```gdscript
+# Accumulate rotation angle (degrees)
+Global.total_rotation += angle_change_per_frame
+
+# Calculate flips on landing
+var flips = int(abs(Global.total_rotation) / 360.0)
+```
+
+## Learning Resources
+
+This project demonstrates the following Godot concepts:
+- RigidBody2D physics
+- Procedural content generation
+- Signal system (SignalBus pattern)
+- Autoload singletons
+- Scene organization
+- Responsive UI updates
+
+## License
+
+MIT License - Feel free to use and modify!
+
+## Contributing
+
+Issues and Pull Requests are welcome!
+
+---
+
+**Created by**: Claude Code
+**Engine**: Godot 4.5
+**Style**: Pixel + Cyberpunk
+
+---
+
+<a name="中文"></a>
+
+# Wave Rider - 赛博朋克摩托特技游戏
 
 一个用 Godot 4.5 制作的像素风赛博朋克摩托跑酷游戏。
 
-## 🎮 游戏玩法
+**[Switch to English / 切换到英文](#english)**
+
+## 游戏玩法
 
 - **目标**: 在无尽的波浪地形上骑行，完成空翻特技获得高分
 - **控制**:
@@ -11,7 +217,7 @@
   - `ESC` 键 - 暂停游戏
   - `R` 键 - 重新开始（游戏结束后）
 
-## 🎯 得分系统
+## 得分系统
 
 ### 空翻分数
 - 1 翻 = 200 分
@@ -21,10 +227,10 @@
 - 5 翻及以上 = 翻数 × 2000 分
 
 ### 落地质量倍率
-- **PERFECT** (0-5°): 3x 倍率 ⭐
+- **PERFECT** (0-5°): 3x 倍率
 - **GREAT** (5-15°): 2x 倍率
 - **GOOD** (15-30°): 1x 倍率
-- **>30°**: 摔车 💥
+- **>30°**: 摔车
 
 ### 连击系统
 - 连续成功特技增加连击数
@@ -38,7 +244,7 @@
 ### 滞空奖励
 - 每秒滞空时间 = +50 分
 
-## 🏗️ 项目结构
+## 项目结构
 
 ```
 wave-bike/
@@ -49,7 +255,7 @@ wave-bike/
 │   └── UI/
 │       ├── GameHUD.tscn       # 游戏内 HUD
 │       └── GameOver.tscn      # 游戏结束界面
-│
+
 ├── Scripts/
 │   ├── Main.gd
 │   ├── Bike.gd                # 摩托车物理和控制
@@ -57,19 +263,19 @@ wave-bike/
 │   ├── ScoreSystem.gd         # 得分计算
 │   ├── GameHUD.gd
 │   └── GameOver.gd
-│
+
 ├── Autoload/                  # 全局单例
 │   ├── Global.gd              # 全局变量和工具函数
 │   ├── SignalBus.gd           # 信号中心
 │   └── GameManager.gd         # 游戏状态管理
-│
+
 └── Assets/                    # 资源文件夹（待添加）
-	├── Sprites/
-	├── Audio/
-	└── Fonts/
+    ├── Sprites/
+    ├── Audio/
+    └── Fonts/
 ```
 
-## 🚀 开始使用
+## 开始使用
 
 ### 方式 1：在 Godot 编辑器中运行
 1. 打开 Godot 4.5
@@ -78,27 +284,27 @@ wave-bike/
 
 ### 方式 2：命令行运行
 ```bash
-godot --path /Users/user/Desktop/projects/wave-bike
+godot --path /path/to/wave-bike
 ```
 
-## 🎨 当前状态
+## 当前状态
 
-### ✅ 已完成
-- ✅ 摩托车物理系统
-- ✅ AD 键控制和空翻检测
-- ✅ 程序化地形生成（5 种地形类型）
-- ✅ 落地角度判定
-- ✅ 得分和连击系统
-- ✅ 游戏状态管理
-- ✅ 基础 UI（HUD + 游戏结束界面）
-- ✅ 摔车检测
+### 已完成
+- 摩托车物理系统
+- AD 键控制和空翻检测
+- 程序化地形生成（5 种地形类型）
+- 落地角度判定
+- 得分和连击系统
+- 游戏状态管理
+- 基础 UI（HUD + 游戏结束界面）
+- 摔车检测
 
-### 🎨 使用临时占位符
-- 🟦 摩托车：青色方块 + 紫色圆形轮子
-- 🟪 地形：青色霓虹线条
-- 🟫 背景：深蓝到紫色渐变
+### 使用临时占位符
+- 摩托车：青色方块 + 紫色圆形轮子
+- 地形：青色霓虹线条
+- 背景：深蓝到紫色渐变
 
-## 🎯 下一步开发
+## 下一步开发
 
 ### 阶段 2：视觉升级（像素风）
 - [ ] 像素艺术摩托车精灵
@@ -122,7 +328,7 @@ godot --path /Users/user/Desktop/projects/wave-bike
 - [ ] 主菜单
 - [ ] 成就系统
 
-## 🔧 调试和测试
+## 调试和测试
 
 ### 查看控制台输出
 游戏会输出详细日志：
@@ -137,13 +343,13 @@ godot --path /Users/user/Desktop/projects/wave-bike
 - `Terrain.tscn`: 段长度、难度、生成距离
 - `Global.gd`: 角度判定范围、得分倍率
 
-## 🐛 已知问题
+## 已知问题
 
 1. **偶尔卡在地形中**: 可能需要调整碰撞形状
 2. **高速时摄像机抖动**: 可以增加 Camera2D 的平滑速度
 3. **UI 文字可能在某些分辨率下不居中**: 需要调整锚点
 
-## 📝 技术细节
+## 技术细节
 
 ### 物理参数
 - 重力倍率: 1.0
@@ -166,7 +372,7 @@ Global.total_rotation += angle_change_per_frame
 var flips = int(abs(Global.total_rotation) / 360.0)
 ```
 
-## 🎓 学习资源
+## 学习资源
 
 这个项目展示了以下 Godot 概念：
 - RigidBody2D 物理
@@ -176,16 +382,6 @@ var flips = int(abs(Global.total_rotation) / 360.0)
 - 场景组织
 - UI 响应式更新
 
-## 📄 许可
+## 许可
 
 MIT License - 随意使用和修改！
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
----
-
-**制作**: Claude Code
-**引擎**: Godot 4.5
-**风格**: 像素 + 赛博朋克
