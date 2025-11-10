@@ -8,6 +8,7 @@
       "WebSearch"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "includeCoAuthoredBy": false
   }
 }
